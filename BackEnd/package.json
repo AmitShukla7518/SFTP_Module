@@ -1,0 +1,48 @@
+{
+  "name": "EMS-mgmt-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "nodemonConfig": {
+    "ignore": [
+      "./config/swagger.json"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "author": "Amit",
+  "license": " ",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "custom-env": "^2.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "fs": "0.0.1-security",
+    "fs-extra": "^11.1.0",
+    "ip": "^1.1.8",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "moment-timezone": "^0.5.39",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20",
+    "request": "^2.88.2",
+    "ssh2-sftp-client": "^8.0.0",
+    "swagger-autogen": "^2.22.0",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.6.0",
+    "validate-ip-node": "^1.0.8",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1",
+    "xlsx": "^0.18.5"
+  }
+}
