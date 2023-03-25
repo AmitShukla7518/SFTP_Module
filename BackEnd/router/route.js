@@ -6,15 +6,17 @@ const logger = require('../config/winston');
 /*   user_activity is just acting like an intercepter for keeping user history */
 
 const login = require('../controllers/auth/login');
-const signup  = require('../controllers/auth/signup');
-const Learn  = require("../controllers/Learning/Learn")
+const signup = require('../controllers/auth/signup');
+const Learn = require("../controllers/Learning/Learn")
 const User_Controller = require('../controllers/Comman_Controller/user');
 const SFTP = require('../controllers/SFTP/SFTPModule')
+const Pagination = require('../controllers/Pagination/Pagination')
 router.use('/login', login);
 router.use('/signup', signup);
 router.use('/Learnings', Learn)
 router.use('/user', User_Controller)
 router.use('/SFTP', SFTP)
+router.use('/pagination', Pagination)
 
 /**
  * Invalid API endpoints request goes here

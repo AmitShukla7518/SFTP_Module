@@ -3,14 +3,18 @@ var router = express.Router();
 var logger = require('../../config/winston');
 require('custom-env').env(true)
 var conn = require('../../config/config');
-var conn = require('../../config/config');
 var { validateIp } = require('../auth/auth_utility');
 const http_status = require('../../constants/http_status');
 const reader = require('xlsx');
 const { json } = require('body-parser');
 const utils = require("./utilty")
+const fs = require("fs")//npm install fs
+// const jsonFile = require("./response_json.json")
+const exceljs = require('exceljs')
 
-// Work On Excel File and Insert Bulk Data into DB and check Data Duplicacy 
+
+
+// Work On Excel File and Insert Bulk Data into DB and check Data Duplicacy (Import Data)
 
 router.post('/importExcel', async function (req, res) {
     try {
@@ -49,6 +53,83 @@ router.post('/importExcel', async function (req, res) {
 
 
 
+/*Export Data JSON To Excel*/
+
+
+
+
+router.get('/exportExcel', async (req, res) => {
+    try {
+        let Data = jsonFile;
+        const workBook = new exceljs.Workbook()
+        const sheet = workBook.addWorksheet('firstNodeSheets')
+        sheet.columns = [
+            { header: "id", key: "id" },
+            { header: "Name", key: "Name" },
+            { header: "MobileNo", key: "MobileNo" },
+            { header: "Email", key: "Email" },
+            { header: "EmployeeId", key: "EmployeeId" },
+            { header: "created_at", key: "created_at" },
+            { header: "Sr.No", key: "Sr.No" }
+        ]
+
+        // sheet.columns = [
+        //     { header: "SrNo", key: "SrNo" },
+        //     { header: "userId", key: "userId" },
+        //     { header: "title", key: "title" },
+        //     { header: "completed", key: "completed" }
+        // ]
+        let counter = 0;
+
+        let sql = "select *from tbl_emp";
+        conn.query(sql, (err, result) => {
+            if (err) throw err;
+            result.map(item => {
+                counter++;
+                item.s_no = counter;
+                console.log(item);
+                sheet.addRow(item);
+            })
+
+
+            sheet.getRow(1).eachCell((cell) => {
+                //cell.font = "bold";
+                cell.font = { bold: true };
+            })
+            res.setHeader(
+                "content-type",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+            res.setHeader("content-disposition", `attachment; filename=users.xlsx`)
+            return workBook.xlsx.write(res);
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Call External APi From NodeJS(Express )
 
 router.get('/dummyData', async function (req, res, next) {
     try {
@@ -89,7 +170,7 @@ router.get('/dummyData', async function (req, res, next) {
 
 
 
-  
+
 
 
 

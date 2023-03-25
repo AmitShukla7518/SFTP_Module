@@ -21,7 +21,7 @@ exports.createAccountOpning = async function (data) {
 exports.checkDuplicacy = async (data) => {
     var arrOfObj = data;
     var dataArr = arrOfObj.map(item => {
-        return [item.Name, item]
+        return [item.userId, item]
     }); // creates array of array
     var maparr = new Map(dataArr); // create key value pair from array of array
     var result = [...maparr.values()];//converting back to array from mapobject

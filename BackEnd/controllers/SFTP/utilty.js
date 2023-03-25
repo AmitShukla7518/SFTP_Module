@@ -36,9 +36,9 @@ exports.listFiles = async function (remoteDir, fileGlob) {
     let fileObjects;
     try {
         fileObjects = await  client.list(remoteDir, fileGlob);
-        return fileObjects
+        //  fileObjects
     } catch (err) {
-        return err;
+         console.log(err);
     }
 
     const fileNames = [];

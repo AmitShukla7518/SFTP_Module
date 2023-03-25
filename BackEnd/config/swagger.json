@@ -85,6 +85,16 @@
         "responses": {}
       }
     },
+    "/Learnings/exportExcel": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/Learnings/dummyData": {
       "get": {
         "description": "",
@@ -186,11 +196,14 @@
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
+      }
+    },
+    "/pagination/Pagination": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     }
   }
